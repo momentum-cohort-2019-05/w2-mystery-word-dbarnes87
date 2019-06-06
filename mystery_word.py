@@ -1,70 +1,47 @@
-with open('words.txt') as file:
-    # words = []
-    # for line in file.readlines():
-    #     words.append(line.strip())
-    words = [line.strip() for line in file.readlines()]
+import random
+import re
+
+f = open("words.txt")
+word_list = (f.read())
+split_word_list = word_list.split()
+
+# print(random.choice(split_word_list))
 
 easy_words = []
-medium_words = []
+normal_words = []
 hard_words = []
-for word in words:
-    if len(word) >= 4 and len(word) <= 6:
+
+for word in split_word_list:
+    if len(word) > 4 and len(word) <= 6:
         easy_words.append(word)
+    elif len(word) >= 6 and len(word) <= 8:
+        normal_words.append(word)
+    elif len(word) >= 8:
+       hard_words.append(word)
 
-    if len(word) >= 6 and len(word) <= 8:
-        medium_words.append(word)
+# print(normal_words)
 
-    if len(word) >= 8 and len(word) <= 12:
-        hard_words.append(word)
+user_choice = input("Which mode would you like to play on: easy, normal, or hard? ")
 
+user_choice_lower_case = user_choice.lower()
 
-def get_difficulty():
-    """Ask user for level of difficulty (easy, medium, hard).
-    If they give a bad answer, keep asking them."""
+if user_choice_lower_case == "easy":
+    easy_choice = random.choice(easy_words)
+    print ("This words is", len(easy_choice), "characters long.")
+elif user_choice_lower_case == "normal":
+    normal_choice = random.choice(normal_words)
+    print ("This word is", len(normal_choice), "characters long.")
+elif user_choice_lower_case == "hard":
+    hard_choice = random.choice(hard_words)
+    print ("This word is", len(hard_choice),  "characters long.")
 
-    while True:
-        difficulty = input("Enter difficulty (easy, medium, or hard): ")
-        if difficulty in ['easy', 'medium', 'hard']:
-            return difficulty
+first_letter_choice = input("Please enter one letter: ").lower()
 
-
-def get_difficulty_recursive():
-    """Ask user for level of difficulty (easy, medium, hard).
-    If they give a bad answer, keep asking them.
-    
-    Don't do this one -- recursive.
-    """
-
-    difficulty = input("Enter difficulty (easy, medium, or hard): ")
-    if difficulty in ['easy', 'medium', 'hard']:
-        return difficulty
-
-    return get_difficulty_recursive()
+while len(first_letter_choice) != 1:
+    print("Invalid entry - please try again.  Remember to type only one letter with each guess.")
+    first_letter_choice= input("Please enter one letter: ").lower()
 
 
-def filter_words_by_difficulty(words, difficulty):
-    """
-    Given a list of words and a difficulty, filter
-    that list to the words that are the right length for
-    that difficulty and return the filtered list.
-    """
-    if difficulty == 'easy':
-        min_len = 4
-        max_len = 6
-    elif difficulty == 'medium':
-        min_len = 6
-        max_len = 8
-    else:
-        min_len = 8
-        max_len = 45
-
-    return [
-        word  # collect word
-        for word in words  # iterate over words
-        # select only words of a certain length
-        if len(word) >= min_len and len(word) <= max_len
-    ]
 
 
-print(len(words))
-print(words[:10])
+
