@@ -63,22 +63,40 @@ def print_word(word, guesses):
     
 guess = input("Please enter one letter: ").lower()
 
-while len(guess) != 1:
+guess_counter = 8
+
+
+while len(guess) != 1 and guess_counter > 0:
     print("Invalid entry - please try again.  Remember to type only one letter with each guess.")
     guess = input("Please enter one letter: ").lower()
 
 
-while len(guess) == 1:
-    current_guesses.append(guess)
+while len(guess) == 1 and guess_counter > 0:
+    if guess not in word:
+        print("Sorry, that letter is incorrect.  Please guess again.")
+    # current_guesses.append(guess)
     print_word(word, current_guesses)
     print("Current guesses: ", current_guesses)
     guess = input("Please enter one letter: ").lower()
-    
+    guess_counter -= 1
+    print("Lives remaining: ", guess_counter)
+    if guess not in current_guesses:
+        current_guesses.append(guess)
+    if guess in current_guesses:
+        print("Duplicate guess - please try again!")
 
-if guess not in word:
-    current_guesses.append(guess)
-    guess = input("Please enter one letter: ").lower()
-    print("Sorry, that letter is incorrect.  Please guess again.")
+print("Sorry - you have no guesses left.  GAME OVER!")
+
+# if output_letters = word:
+#     print(word)
+
+
+
+
+# if guess not in word:
+#     current_guesses.append(guess)
+#     guess = input("Please enter one letter: ").lower()
+#     print("Sorry, that letter is incorrect.  Please guess again.")
     
 
 
