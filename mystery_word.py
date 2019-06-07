@@ -48,14 +48,54 @@ elif user_choice_lower_case == "hard":
 word = random_word
 current_guesses = []
 
-first_letter_choice = input("Please enter one letter: ").lower()
+def display_letter(letter, guesses):
+    if letter in guesses:
+        return letter
+    else:
+        return "_"
+[display_letter(letter, current_guesses)
+ for letter in word]
 
-if len(first_letter_choice) == 1:
-    current_guesses.append(first_letter_choice)
+def print_word(word, guesses):
+    output_letters = [display_letter(letter, guesses) 
+                      for letter in word]
+    print(" ".join(output_letters))
+    
+guess = input("Please enter one letter: ").lower()
 
-while len(first_letter_choice) != 1:
+while len(guess) != 1:
     print("Invalid entry - please try again.  Remember to type only one letter with each guess.")
-    first_letter_choice = input("Please enter one letter: ").lower()
+    guess = input("Please enter one letter: ").lower()
+
+
+while len(guess) == 1:
+    current_guesses.append(guess)
+    print_word(word, current_guesses)
+    print("Current guesses: ", current_guesses)
+    guess = input("Please enter one letter: ").lower()
+    
+
+if guess not in word:
+    current_guesses.append(guess)
+    guess = input("Please enter one letter: ").lower()
+    print("Sorry, that letter is incorrect.  Please guess again.")
+    
+
+
+print_word(word, current_guesses)
+
+# input("Please enter another letter: ").lower()
+
+# another_letter_choice = input("Please enter another letter: ").lower()
+
+# if another_letter_choice not in word:
+#     print("Sorry, that letter is incorrect.  Please guess again.")
+#     another_letter_choice = input("Please enter another letter: ").lower()
+
+# [display_letter(letter, current_guesses)
+#  for letter in word]
+
+    
 
 
 
