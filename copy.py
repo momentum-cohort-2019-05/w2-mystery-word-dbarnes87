@@ -48,25 +48,27 @@ elif user_choice_lower_case == "hard":
 print("You have 8 lives remaining.")
 
 word = random_word
-current_guesses = [] 
-
-    # if play_again_choice == "yes":
-    #     play_again
-    # else:
-    #     print("Okay - have a nice day!")
+current_guesses = []
 
 def display_letter(letter, guesses):
     if letter in guesses:
         return letter
     else:
         return "_"
-    [display_letter(letter, current_guesses)
-    for letter in word]
+[display_letter(letter, current_guesses)
+ for letter in word]
 
 def print_word(word, guesses):
     output_letters = [display_letter(letter, guesses) 
                       for letter in word]
     print(" ".join(output_letters))
+    
+
+def play_again(play_again_choice):
+    # if play_again_choice == "yes":
+    #     play_again
+    # else:
+    #     print("Okay - have a nice day!")
 
 guess = input("Please enter one letter: ").lower()
 
@@ -78,30 +80,30 @@ while len(guess) != 1 and guess_counter > 0:
 
 
 while len(guess) == 1 and guess_counter > 1:
-            
+        
     if guess not in current_guesses:
         current_guesses.append(guess)
-            
+        
     if guess not in word:
         guess_counter -= 1
         print("Sorry, that letter is incorrect.  Please guess again.")
         print("Lives remaining: ", guess_counter)
         print("Current guesses: ", current_guesses)
-            
+        
         print_word(word, current_guesses)
         # print("Current guesses: ", current_guesses)
-            
+        
     if guess in word:
         print("Good job.  Please guess again.")
         print("Lives remaining: ", guess_counter)
         print("Current guesses: ", current_guesses)
-            
+        
         print_word(word, current_guesses)
 
             # print("Current guesses: ", current_guesses)
     guess = input("Please enter one letter: ").lower()
         # print("Lives remaining: ", guess_counter)
-            
+        
     if guess in current_guesses:
         guess_counter += 1
         print("Duplicate guess - please guess again!")
@@ -114,15 +116,14 @@ if guess_counter <= 1:
     print("Sorry - you have no lives remaining.  GAME OVER!")
     print(f"Your word was", word)
 
-        
-    # print_word(word, current_guesses)
+    
+# print_word(word, current_guesses)
 
-def play_again(play_again_choice):
-    play_again_choice = input("Would you like to play again - yes or no? ")
-    if play_again_choice == "yes":
-        play_again
-    else:
-        print("Okay - have a nice day!")
+play_again_choice = input("Would you like to play again - yes or no? ")
+if play_again_choice == "yes":
+    play_again
+else:
+    print("Okay - have a nice day!")
 
 
 
@@ -156,18 +157,3 @@ def play_again(play_again_choice):
 
 # [display_letter(letter, current_guesses)
 #  for letter in word]
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
