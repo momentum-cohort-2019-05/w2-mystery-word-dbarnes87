@@ -68,6 +68,12 @@ def print_word(word, guesses):
                       for letter in word]
     print(" ".join(output_letters))
 
+def play_again(play_again_choice):
+    if play_again_choice == "yes":
+        play_again
+    else:
+        print("Okay - have a nice day!")   
+
 guess = input("Please enter one letter: ").lower()
 
 guess_counter = 8
@@ -117,12 +123,15 @@ if guess_counter <= 1:
         
     # print_word(word, current_guesses)
 
-def play_again(play_again_choice):
-    play_again_choice = input("Would you like to play again - yes or no? ")
-    if play_again_choice == "yes":
-        play_again
-    else:
-        print("Okay - have a nice day!")
+input("Would you like to play again - yes or no? ")
+play_again_choice = input("Would you like to play again - yes or no? ")
+play_again
+
+
+    # if play_again_choice == "yes":
+    #     play_again
+    # else:
+    #     print("Okay - have a nice day!")
 
 
 
